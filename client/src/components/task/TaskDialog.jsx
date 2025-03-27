@@ -13,7 +13,7 @@ import {
   useChangeTaskStageMutation,
   useDuplicateTaskMutation,
   useTrashTastMutation,
-} from "../../redux/slices/api/taskApiSlice";
+} from "../../redux/Slices/api/taskApiSlice";
 import ConfirmatioDialog from "../ConfirmationDialog";
 import AddSubTask from "./AddSubTask";
 import AddTask from "./AddTask";
