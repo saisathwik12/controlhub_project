@@ -23,7 +23,7 @@ const PRIORIRY = ["HIGH", "MEDIUM", "NORMAL", "LOW"];
 const uploadFileToCloudinary = async (file) => {
   const formData = new FormData();
   formData.append("file", file);
-  formData.append("upload_preset", "ml_default"); // Replace with your Cloudinary preset
+  formData.append("upload_preset", "cb_preset"); // Replace with your Cloudinary preset
   formData.append("cloud_name", "dglzoqs9h"); // Replace with your Cloudinary cloud name
 
   try {
