@@ -15,11 +15,14 @@ const PORT = process.env.PORT || 5000;
 
 const app = express();
 
+app.options("*", cors());
+
 app.use(
   cors({
     origin: ["http://localhost:3000", "http://localhost:3001","https://controlhub-mern-project.netlify.app/"],
     methods: ["GET", "POST", "DELETE", "PUT"],
     credentials: true,
+    allowedHeaders: ["Content-Type", "Authorization"],
   })
 );
 
