@@ -86,14 +86,14 @@ const Sidebar = () => {
 
   return (
     <div className='w-full h-full flex flex-col gap-6 p-5'>
-      <h1 className='flex gap-1 items-center'>
-      <div className='circle inline rotate-logo w-20 h-20 self-center'> 
+
+      {/* <div className='circle inline rotate-logo w-20 h-20 self-center'> 
                 <img src="./LOGO.png" alt="" />
-              </div>
-            {/* <h1 className='items-center '>
+              </div> */}
+            <h1 className='items-center '>
                 <img src="/logos/title2.png" alt="" />
-            </h1> */}
-      </h1>
+            </h1>
+
 
       <div className='flex-1 flex flex-col gap-y-5 py-8'>
         {sidebarLinks.map((link) => (

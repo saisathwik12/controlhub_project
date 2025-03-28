@@ -42,6 +42,11 @@ const Login = () => {
       <div className='w-full md:w-auto flex gap-0 md:gap-40 flex-col md:flex-row items-center justify-center'>
         {/* left side */}
         <div className='h-full w-full lg:w-2/3 flex flex-col items-center justify-center'>
+        <div className="mb-20">
+            <div className="rotate-logo w-50 h-50 ">
+            <img src="./LOGO.png" alt="" />
+            </div>
+          </div>
           <div className='w-full md:max-w-lg 2xl:max-w-3xl flex flex-col items-center justify-center gap-5 md:gap-y-10 2xl:-mt-20'>
             <p className='flex flex-col gap-0 md:gap-2 text-4xl md:text-6xl 2xl:text-6xl  text-center'>
               <img src="/logos/title2.png" alt="title image" />
@@ -51,11 +56,11 @@ const Login = () => {
               Unlock your team's potential with our effortlessly simple project management solution.
             </span>
 
-            <div className='cell'>
+            {/* <div className='cell'>
               <div className='circle w-40 h-40 rotate-in-up-left'>
                 <img src="./LOGO.png" alt="" />
               </div>
-            </div>
+            </div> */}
           </div>
         </div>
         {/* right side */}
@@ -120,6 +125,7 @@ const Login = () => {
               </span>
             </p>
           </form>
+
         </div>
       </div>
     </div>

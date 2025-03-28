@@ -15,13 +15,23 @@ const PORT = process.env.PORT || 5000;
 
 const app = express();
 
+const allowedOrigins = [
+  "http://localhost:3000",
+  "http://localhost:3001",
+  "https://controlhub-mern-project.netlify.app",
+];
+
+app.use(
+  cors({
+    origin: allowedOrigins,
+    methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
+    allowedHeaders: ["Content-Type", "Authorization"],
+    credentials: true, // 
+  })
+);
+
+// 🔹 Also manually set headers (for extra safety)
 app.use((req, res, next) => {
-  const allowedOrigins = [
-    "http://localhost:3000",
-    "http://localhost:3001",
-    "https://controlhub-mern-project.netlify.app",
-  ];
-  
   const origin = req.headers.origin;
   if (allowedOrigins.includes(origin)) {
     res.setHeader("Access-Control-Allow-Origin", origin);
@@ -37,6 +47,8 @@ app.use((req, res, next) => {
 
   next();
 });
+
+
 
 
 app.use(express.json());
