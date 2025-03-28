@@ -15,15 +15,6 @@ const PORT = process.env.PORT || 5000;
 
 const app = express();
 
-<<<<<<< HEAD
-app.use(
-  cors({
-    origin: ["http://localhost:3000", "http://localhost:3001","https://controlhub-mern-project.netlify.app"],
-    methods: ["GET", "POST", "DELETE", "PUT"],
-    credentials: true,
-  })
-);
-=======
 app.use((req, res, next) => {
   const allowedOrigins = [
     "http://localhost:3000",
@@ -46,7 +37,7 @@ app.use((req, res, next) => {
 
   next();
 });
->>>>>>> cc7a118055d88733c56d54fd92cf15eb21ef4fff
+
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
