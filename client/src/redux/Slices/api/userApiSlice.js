@@ -3,6 +3,15 @@ import { apiSlice } from "../apiSlice";
 
 export const userApiSlice = apiSlice.injectEndpoints({
   endpoints: (builder) => ({
+    registerUser: builder.mutation({
+      query: (data) => ({
+        url: `${USERS_URL}/register`,
+        method: "POST",
+        body: data,
+        credentials: "include",
+      }),
+    }),
+
     updateUser: builder.mutation({
       query: (data) => ({
         url: `${USERS_URL}/profile`,
@@ -82,4 +91,5 @@ export const {
   useGetNotificationsQuery,
   useMarkNotiAsReadMutation,
   useGetUserTaskStatusQuery,
+  useRegisterUserMutation,
 } = userApiSlice;

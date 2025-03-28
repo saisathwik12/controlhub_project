@@ -1,82 +1,116 @@
-// import React, { useState } from "react";
-// import { useForm } from "react-hook-form";
-// import { useNavigate } from "react-router-dom";
-// import Textbox from "../components/Textbox";
-// import { useRegisterMutation } from "@/redux/Slices/userApiSlice";
-// import { Button } from "@/components/ui/button";
+import { useState } from "react";
+import { toast } from "react-toastify";
+import { useNavigate } from "react-router-dom";
+import { useRegisterUserMutation } from "@/redux/Slices/api/userApiSlice";
 
+const Register = () => {
+  const navigate = useNavigate();
+  const [registerUser, { isLoading }] = useRegisterUserMutation();
 
-// const Register = () => {
-//   const navigate = useNavigate();
-//   const [registerUser, { isLoading, error }] = useRegisterMutation();
-//   const [apiError, setApiError] = useState("");
+  const [formData, setFormData] = useState({
+    name: "",
+    email: "",
+    password: "",
+    role: "user",
+    title: "",
+  });
 
-//   const {
-//     register,
-//     handleSubmit,
-//     formState: { errors },
-//   } = useForm();
+  const handleChange = (e) => {
+    setFormData({ ...formData, [e.target.name]: e.target.value });
+  };
 
-//   const submitHandler = async (data) => {
-//     try {
-//       await registerUser(data).unwrap();
-//       navigate("/log-in"); // Redirect to login page after registration
-//     } catch (err) {
-//       setApiError(err?.data?.message || "Registration failed");
-//     }
-//   };
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    try {
+      const response = await registerUser(formData).unwrap();
+      toast.success("Registration successful! Redirecting...");
+      setTimeout(() => navigate("/log-in"), 2000);
+    } catch (error) {
+      toast.error(error?.data?.message || "Registration failed");
+    }
+  };
 
-//   return (
-//     <div className="flex items-center justify-center min-h-screen bg-gray-100">
-//       <form
-//         onSubmit={handleSubmit(submitHandler)}
-//         className=" bg-white p-6 rounded-lg shadow-md w-96"
-//       >
-//         <h2 className="text-2xl font-bold text-center mb-4">Register</h2>
+  return (
+    <div className="max-w-md mx-auto mt-10 p-6 bg-white shadow-md rounded-lg">
+      <h2 className="text-2xl font-bold text-center mb-4">Create Account</h2>
+      <form onSubmit={handleSubmit} className="space-y-4">
+        <div>
+          <label className="block text-sm font-semibold">Full Name</label>
+          <input
+            type="text"
+            name="name"
+            value={formData.name}
+            onChange={handleChange}
+            className="w-full p-2 border border-gray-300 rounded"
+            required
+          />
+        </div>
 
-//         {apiError && <p className="text-red-500">{apiError}</p>}
+        <div>
+          <label className="block text-sm font-semibold">Email</label>
+          <input
+            type="email"
+            name="email"
+            value={formData.email}
+            onChange={handleChange}
+            className="w-full p-2 border border-gray-300 rounded"
+            required
+          />
+        </div>
 
-//         <Textbox
-//           label="Name"
-//           placeholder="Enter your name"
-//           register={register("name", { required: "Name is required" })}
-//           error={errors.name?.message}
-//         />
+        <div>
+          <label className="block text-sm font-semibold">Password</label>
+          <input
+            type="password"
+            name="password"
+            value={formData.password}
+            onChange={handleChange}
+            className="w-full p-2 border border-gray-300 rounded"
+            required
+          />
+        </div>
 
-//         <Textbox
-//           type="email"
-//           label="Email"
-//           placeholder="Enter your email"
-//           register={register("email", { required: "Email is required" })}
-//           error={errors.email?.message}
-//         />
+        <div>
+          <label className="block text-sm font-semibold">Role</label>
+          <select
+            name="role"
+            value={formData.role}
+            onChange={handleChange}
+            className="w-full p-2 border border-gray-300 rounded"
+          >
+            <option value="user">User</option>
+            <option value="admin">Admin</option>
+          </select>
+        </div>
 
-//         <Textbox
-//           type="password"
-//           label="Password"
-//           placeholder="Enter password"
-//           register={register("password", { required: "Password is required" })}
-//           error={errors.password?.message}
-//         />
+        <div>
+          <label className="block text-sm font-semibold">Title</label>
+          <input
+            type="text"
+            name="title"
+            value={formData.title}
+            onChange={handleChange}
+            className="w-full p-2 border border-gray-300 rounded"
+          />
+        </div>
 
-//         <Textbox
-//           label="Role"
-//           placeholder="Enter your role"
-//           register={register("role", { required: "Role is required" })}
-//           error={errors.role?.message}
-//         />
+        <button
+          type="submit"
+          disabled={isLoading}
+          className="w-full p-2 bg-blue-600 text-white rounded hover:bg-blue-700"
+        >
+          {isLoading ? "Registering..." : "Register"}
+        </button>
+      </form>
 
-//         <Textbox
-//           label="Title"
-//           placeholder="Enter your title"
-//           register={register("title", { required: "Title is required" })}
-//           error={errors.title?.message}
-//         />
+      <p className="mt-4 text-center">
+        Already have an account?{" "}
+        <span className="text-blue-600 cursor-pointer" onClick={() => navigate("/log-in")}>
+          Login here
+        </span>
+      </p>
+    </div>
+  );
+};
 
-//         <Button type="submit"  className="w-full mt-5" >{isLoading ? "Registering..." : "Register"}</Button>
-//       </form>
-//     </div>
-//   );
-// };
-
-// export default Register;
+export default Register;

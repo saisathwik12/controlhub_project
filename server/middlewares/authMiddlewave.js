@@ -1,11 +1,12 @@
+import asyncHandler from "express-async-handler";
 import jwt from "jsonwebtoken";
-import User from "../models/user.js";
+import User from "../models/userModel.js";
 
-const protectRoute = async (req, res, next) => {
-  try {
-    let token = req.cookies?.token;
+const protectRoute = asyncHandler(async (req, res, next) => {
+  let token = req.cookies.token;
 
-    if (token) {
+  if (token) {
+    try {
       const decodedToken = jwt.verify(token, process.env.JWT_SECRET);
 
       const resp = await User.findById(decodedToken.userId).select(
@@ -19,18 +20,18 @@ const protectRoute = async (req, res, next) => {
       };
 
       next();
-    } else {
+    } catch (error) {
+      console.error(error);
       return res
         .status(401)
         .json({ status: false, message: "Not authorized. Try login again." });
     }
-  } catch (error) {
-    console.error(error);
+  } else {
     return res
       .status(401)
       .json({ status: false, message: "Not authorized. Try login again." });
   }
-};
+});
 
 const isAdminRoute = (req, res, next) => {
   if (req.user && req.user.isAdmin) {

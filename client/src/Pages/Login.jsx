@@ -108,6 +108,17 @@ const Login = () => {
                 className='w-full h-10 bg-blue-700 text-white rounded-full'
               />
             )}
+
+            {/* ✅ Add Registration Link */}
+            <p className="mt-4 text-center">
+              Don't have an account?{" "}
+              <span
+                className="text-blue-600 cursor-pointer"
+                onClick={() => navigate("/register")}
+              >
+                Register here
+              </span>
+            </p>
           </form>
         </div>
       </div>

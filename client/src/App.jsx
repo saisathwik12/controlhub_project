@@ -17,6 +17,7 @@ import Sidebar from './components/SideBar'
 import { setOpenSidebar } from './redux/Slices/authSlice'
 import { LandingPage } from './Pages/LandingPage'
 import { StatusPage } from './Pages'
+import Register from './Pages/Registraion'
 // import Register from './Pages/Registraion'
 
 function Layout() {
@@ -110,7 +111,7 @@ function App() {
           <Route path='/status' element={<StatusPage />} />
         </Route>
         <Route path='/log-in' element={<Login />} />
-        {/* <Route path="/register" element={<Register />} /> */}
+        <Route path="/register" element={<Register />} />
         <Route path='/home' element={<LandingPage />} />
       </Routes>
 
