@@ -31,7 +31,7 @@ const Register = () => {
   };
 
   return (
-    <div className="max-w-md mx-auto mt-10 p-6 bg-white shadow-md rounded-lg">
+    <div className="max-w-md mx-auto mt-10 p-6 bg-white shadow-md rounded-lg dark:bg-gray-900 ">
       <h2 className="text-2xl font-bold text-center mb-4">Create Account</h2>
       <form onSubmit={handleSubmit} className="space-y-4">
         <div>

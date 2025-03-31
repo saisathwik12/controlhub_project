@@ -6,6 +6,7 @@ import NotificationPanel from "./NotificationPanel";
 import UserAvatar from "./UserAvatar";
 import { useLocation, useNavigate, useSearchParams } from "react-router-dom";
 import { updateURL } from "../utils";
+import DarkModeToggle from "./DarkModeToggle";
 
 const Navbar = () => {
   const dispatch = useDispatch();
@@ -26,7 +27,7 @@ const Navbar = () => {
   };
 
   return (
-    <div className='flex justify-between items-center bg-white dark:bg-[#1f1f1f] px-4 py-3 2xl:py-4 sticky z-10 top-0'>
+    <div className='flex justify-between items-center bg-white dark:bg-[#080808] px-4 py-3 2xl:py-4 sticky z-10 top-0'>
       <div className='flex gap-4'>
         <div className=''>
           <button
@@ -49,13 +50,15 @@ const Navbar = () => {
               value={searchTerm}
               type='text'
               placeholder='Search...'
-              className='flex-1 outline-none bg-transparent placeholder:text-gray-500 text-gray-800'
+              className='flex-1 outline-none bg-transparent placeholder:text-gray-500 dark:text-white text-gray-800'
             />
           </form>
         )}
       </div>
 
       <div className='flex gap-2 items-center'>
+        <DarkModeToggle />
+
         <NotificationPanel />
 
         <UserAvatar />
