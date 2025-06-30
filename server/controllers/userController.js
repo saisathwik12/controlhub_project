@@ -261,7 +261,28 @@ const deleteUserProfile = asyncHandler(async (req, res) => {
   res.status(200).json({ status: true, message: "User deleted successfully" });
 });
 
+// Login With Google
+const googleLogin = async (req, res) => {
+  const { email, name } = req.body;
+
+  try {
+    let user = await User.findOne({ email });
+
+    if (!user) {
+      user = await User.create({ email, name });
+    }
+
+    const token = jwt.sign({ userId: user._id }, process.env.JWT_SECRET, { expiresIn: "1d" });
+
+    res.cookie("token", token, { httpOnly: true, secure: true, sameSite: "None" });
+    res.json({ user, token });
+  } catch (error) {
+    res.status(400).json({ message: "Google authentication failed" });
+  }
+};
+
 export {
+  googleLogin,
   activateUserProfile,
   changeUserPassword,
   deleteUserProfile,

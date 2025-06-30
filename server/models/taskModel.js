@@ -48,7 +48,7 @@ const taskSchema = new Schema(
     isTrashed: { type: Boolean, default: false },
   },
   { timestamps: true }
-);
+);  
 
 const Task = mongoose.model("Task", taskSchema);
 

@@ -18,6 +18,7 @@ const router = express.Router();
 router.post("/register", registerUser);
 router.post("/login", loginUser);
 router.post("/logout", logoutUser);
+// router.post("/google-login", googleLogin);
 
 router.get("/get-team", protectRoute, isAdminRoute, getTeamList);
 router.get("/notifications", protectRoute, getNotificationsList);

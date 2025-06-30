@@ -8,6 +8,7 @@ import toast from "react-hot-toast";
 import { useLoginMutation } from "@/redux/Slices/api/authApiSlice";
 import Loading from "@/components/Loading";
 import { setCredentials } from "@/redux/Slices/authSlice";
+// import { signInWithGoogle } from "@/utils/firebase";
 
 
 const Login = () => {
@@ -33,6 +34,21 @@ const Login = () => {
     }
   };
 
+  // // ✅ Handle Google Login
+  // const handleGoogleLogin = async () => {
+  //   try {
+  //     const user = await signInWithGoogle();
+  //     console.log("Google User:", user);
+
+  //     // Send user info to backend if needed (optional)
+  //     const res = await login({ email: user.email }).unwrap();
+  //     dispatch(setCredentials(res));
+  //     navigate("/dashboard");
+  //   } catch (error) {
+  //     toast.error("Google Sign-In failed");
+  //   } 
+  // };
+
   useEffect(() => {
     user && navigate("/dashboard");
   }, [user]);
@@ -42,9 +58,9 @@ const Login = () => {
       <div className='w-full md:w-auto flex gap-0 md:gap-40 flex-col md:flex-row items-center justify-center'>
         {/* left side */}
         <div className='h-full w-full lg:w-2/3 flex flex-col items-center justify-center'>
-        <div className="mb-20">
+          <div className="mb-20">
             <div className="rotate-logo w-50 h-50 ">
-            <img src="./LOGO.png" alt="" />
+              <img src="./LOGO.png" alt="" />
             </div>
           </div>
           <div className='w-full md:max-w-lg 2xl:max-w-3xl flex flex-col items-center justify-center gap-5 md:gap-y-10 2xl:-mt-20'>
@@ -113,6 +129,16 @@ const Login = () => {
                 className='w-full h-10 bg-blue-700 text-white rounded-full'
               />
             )}
+
+            {/* ✅ Google Login Button */}
+            {/* <button
+              type="button"
+              onClick={handleGoogleLogin}
+              className="w-full mt-4 flex items-center justify-center gap-2 bg-white text-gray-700 border border-gray-300 rounded-full px-4 py-2 shadow-sm hover:bg-gray-100"
+            >
+              <img src="/logos/google.svg" alt="Google Logo" className="h-5 w-5" />
+              Sign in with Google
+            </button> */}
 
             {/* ✅ Add Registration Link */}
             <p className="mt-4 text-center">
