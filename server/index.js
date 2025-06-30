@@ -18,7 +18,7 @@ const app = express();
 const allowedOrigins = [
   "http://localhost:3000",
   "http://localhost:3001",
-  "https://controlhub-mern.netlify.app/",
+  "https://controlhub-mern.netlify.app",
   "https://controlhub-project.onrender.com",
 ];
 
